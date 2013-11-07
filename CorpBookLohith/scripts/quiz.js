@@ -1,1 +1,3 @@
-﻿
+(function(global){
+    
+})(window)

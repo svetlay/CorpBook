@@ -8,14 +8,23 @@
         navigator.splashscreen.hide();
     }, false);
     
-    app.application = new kendo.mobile.Application(document.body, { layout: "tabstrip-layout", statusBarStyle: statusBarStyle, skin : "flat",initial:"Views/profile.html" });
+    var userCred = localStorage["CorpBook.User"];
+    
+    var initialView ="Views/profile.html";
+    
+    if(userCred == "")
+    {
+        initialView = "Views/login.html";    
+    }
+    
+    app.application = new kendo.mobile.Application(document.body, { layout: "tabstrip-layout", statusBarStyle: statusBarStyle, skin : "flat",initial:initialView });
 
     var applicationSettings = {
         emptyGuid: '00000000-0000-0000-0000-000000000000',
         apiKey: 'VjJXja95aNJmqz0M' // set your API Key here
     };
     
-    localStorage["CorpBook.User"] = "Abhishek.Kant@telerik.com";
+    //localStorage["CorpBook.User"] = "Abhishek.Kant@telerik.com";
     
     // initialize Everlive SDK
     app.el = new Everlive({
