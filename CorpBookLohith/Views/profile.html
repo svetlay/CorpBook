@@ -2,9 +2,18 @@
         data-role="view"
         data-title="Profile">
 
-        <div class="view-content">
-            <h1>Profile</h1>
-            
-           
+         <div data-role="view" id="userProfileView" data-title="Profile">
+           <h1> </h1>
         </div>
+        
+        <script id="profileTemplate" type="text/x-kendo-template">
+			<a href="\#telerikhelperdetailview?Id=#:uid#"
+				   class="km-listview-link"
+				   data-role="listview-link">
+				  <p class="titlecs">#=title#</p>
+			      <p class="datecs">#=pubDate#</p>
+		    </a>
+		</script>
     </div>
+
+
