@@ -8,7 +8,7 @@
         navigator.splashscreen.hide();
     }, false);
 
-    app.application = new kendo.mobile.Application(document.body, { layout: "tabstrip-layout", statusBarStyle: statusBarStyle });
+    app.application = new kendo.mobile.Application(document.body, { layout: "tabstrip-layout", statusBarStyle: statusBarStyle, skin : "flat",initial:"Views/profile.html" });
 
     app.changeSkin = function (e) {
         if (e.sender.element.text() === "Flat") {
