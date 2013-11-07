@@ -1,6 +1,7 @@
 <div id="tabstrip-profile"
         data-role="view"
         data-title="Profile" data-init="profileInit">
+ 
            <div id="loggedUserDetails"> </div>
 
     </div>
@@ -8,13 +9,15 @@
 
     <script id="profileTemplate" type="text/x-kendo-template">
 
-<h1>#=FirstName# #=LastName#</h1>
-        #=Office#
-        #=Department#
-        #=Role#
-        #=GamerScore#
-        #=RecognitionPlus#
-        #=RecognitionMinus#
+<h1>#=FirstName# #=LastName#</h1><br/>
+   <img id="userPicture" /><br />
+
+       <span> #=Role#</span>
+       <span> #=Office#</span>
+        <br />
+        Score: #=GamerScore#<br/>
+        Positive Recognition: #=RecognitionPlus#<br/>
+        Negative Recognition:#=RecognitionMinus#
 
 		</script>
 
