@@ -8,7 +8,8 @@
         navigator.splashscreen.hide();
     }, false);
     
-    app.application = new kendo.mobile.Application(document.body, { layout: "tabstrip-layout", statusBarStyle: statusBarStyle, skin : "flat",initial:"Views/profile.html" });
+    app.application = new kendo.mobile.Application(document.body, 
+    { layout: "tabstrip-layout", statusBarStyle: statusBarStyle, skin : "flat",initial:"Views/quiz.html" });
 
     var applicationSettings = {
         emptyGuid: '00000000-0000-0000-0000-000000000000',
