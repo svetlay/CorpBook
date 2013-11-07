@@ -1,19 +1,15 @@
 <div id="tabstrip-profile"
         data-role="view"
-        data-title="Profile">
-
-         <div data-role="view" id="userProfileView" data-title="Profile">
+        data-title="Profile" data-init="profileInit">
            <h1> </h1>
-        </div>
-        
-        <script id="profileTemplate" type="text/x-kendo-template">
-			<a href="\#telerikhelperdetailview?Id=#:uid#"
-				   class="km-listview-link"
-				   data-role="listview-link">
-				  <p class="titlecs">#=title#</p>
-			      <p class="datecs">#=pubDate#</p>
-		    </a>
-		</script>
+
     </div>
 
+
+    <script id="profileTemplate" type="text/x-kendo-template">
+
+				  <p class="titlecs">#=title#</p>
+			      <p class="datecs">#=pubDate#</p>
+
+		</script>
 
