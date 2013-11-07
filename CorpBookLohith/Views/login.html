@@ -1,4 +1,4 @@
-<div data-role="view" data-title="Login" data-id="tabstrip-login">
+<div data-role="view" data-title="Login" data-id="tabstrip-login" data-model="app.loginService.viewModel">
 
         <!--Header-->
         <div data-role="header">
@@ -8,7 +8,19 @@
         </div>
         
         <div>
-            <h1>Login</h1>
+            <div style="margin-top:7em;border-radius:10px">
+                <div align=center><h1>CorpBook</h1></div>
+                <div>
+                <ul data-role="listview" data-style="inset">
+                    <li><label for="username">Enter Telerik Email:</label> 
+                        <input type="text" id="username" data-bind="value: username" placeholder="you@telerik.com"/></li>
+
+                </ul>
+                </div>
+                <div align=center>            
+                <a data-bind="click: onLogin" id="modalview-login-button" type="button" data-role="button">Login</a>
+                </div>
+            </div>            
         </div>
     
         <!--Footer-->

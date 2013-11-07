@@ -5,21 +5,44 @@
     LoginViewModel = kendo.data.ObservableObject.extend({
         isLoggedIn: false,
         username: "",
-        password: "",
 
         onLogin: function () {
             var that = this,
-                username = that.get("username").trim(),
-                password = that.get("password").trim();
-
-            if (username === "" || password === "") {
-                navigator.notification.alert("Both fields are required!",
+                username = that.get("username").trim();
+            
+            if (username === "") {
+                navigator.notification.alert("Email is required!",
                     function () { }, "Login failed", 'OK');
 
                 return;
             }
+            app.application.showLoading();
 
-            that.set("isLoggedIn", true);
+            var filter = { 'Email': username};
+            var empData = app.el.data('Employee');
+            empData.get(filter).then(
+                function(data){
+                     app.application.hideLoading();
+                    if(data.count === 0)
+                    {
+                         navigator.notification.alert("Invalid credential.!",
+                        function () { }, "Login failed", 'OK');
+                        return;
+                    }
+                    localStorage["CorpBook.User"] = username;
+                    app.application.navigate("Views/profile.html")
+                    that.set("isLoggedIn", true);
+                },
+                function(error)
+                {
+                  app.application.hideLoading();
+                    navigator.notification.alert("Invalid credential.!",
+                    function () { }, "Login failed", 'OK');
+
+                }
+            );
+            
+            
         },
 
         onLogout: function () {

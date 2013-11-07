@@ -12,14 +12,14 @@
     
     var initialView ="Views/profile.html";
     
-    if(userCred == "")
+    if(userCred === undefined)
     {
         initialView = "Views/login.html";    
     }
     
     app.application = new kendo.mobile.Application(document.body, { layout: "tabstrip-layout", statusBarStyle: statusBarStyle, skin : "flat",initial:initialView });
 
-    var applicationSettings = {
+    app.applicationSettings = {
         emptyGuid: '00000000-0000-0000-0000-000000000000',
         apiKey: 'VjJXja95aNJmqz0M' // set your API Key here
     };
@@ -28,7 +28,7 @@
     
     // initialize Everlive SDK
     app.el = new Everlive({
-        apiKey: applicationSettings.apiKey
+        apiKey: app.applicationSettings.apiKey
     });
     
     /*var filter = app.el.Query();
