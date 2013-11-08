@@ -95,15 +95,15 @@ function ShowQuestion()
     }
     else if(questionType.type === "role")
     {
-        opt1 = employee.Role;
-        opt2 = employee1.Role;
+        opt1 = employee1.Role;
+        opt2 = employee.Role;
         opt3 = employee2.Role;
     }
     else 
     {
         opt1 = employee1.Office;
-        opt2 = employee2.Office;
-        opt3 = employee.Office;
+        opt2 = employee.Office;
+        opt3 = employee2.Office;
     }
     currentQuestion = new QuestionModel(questionType,employee,opt1, opt2, opt3);
     var output = questionTemplate(currentQuestion);
@@ -112,9 +112,7 @@ function ShowQuestion()
 }
 function SendFlagEmail ()
 {
-    /*var  ApplicationId = "VjJXja95aNJmqz0M";
-    var EmailTemplateId = "352737e0-4890-11e3-b9be-c76c12ebd876";*/
-    alert("hi");
+
     
     var recipients = {
     "Recipients": [
@@ -140,8 +138,7 @@ $.ajax({
     }
 });
 
-    
-    alert("sent");
+  
     
     
     
@@ -214,11 +211,7 @@ function OnAnswerClick()
         $("#message").text("Wrong !!!");
         localStorage["CorpBook.User.GamerScore"] = --gamerScore;
     }
-    //app.el.data('Employee').updateSingle({ 'Id': localStorage["CorpBook.User.Id"], 'GamerScore': JSON.parse(gamerScore) },
-    
-    app.el.data('Employee').update(
-    {  'GamerScore': JSON.parse(gamerScore) },
-    {'Email': localStorage["CorpBook.User"]},
+    app.el.data('Employee').updateSingle({ Id: localStorage["CorpBook.User.Id"], 'GamerScore': gamerScore },
                                         function(data){
                                             
                                             console.log("recognition");
@@ -227,7 +220,7 @@ function OnAnswerClick()
                                                                     .then(function(empdata){
                                                                         
                                                                         var rPlus = empdata.result[0].RecognitionPlus;
-                                                                        var rMinus = empdata.result[0].RecognitionMinus;
+                                                                        var rMinus = empdata.result[0].Recognitionminus;
                                                                         if(isAnswerCorrect)
                                                                         {
                                                                             ++rPlus;
@@ -239,28 +232,25 @@ function OnAnswerClick()
                                                                         
                                                                         
                                                                         app.el.data("Employee").update(
-                                                                                    { 'RecognitionPlus': rPlus, 'RecognitionMinus': rMinus }, // data
+                                                                                    { 'RecognitionPlus': rPlus, 'Recognitionminus': rMinus }, // data
                                                                                     { Id : currentQuestion.Employee.Id }, // filter
                                                                         
                                                                                     function(upddata){
                                                                                         console.log((upddata));
                                                                                     },
                                                                                     function(error){
-                                                                                        alert("174");
                                                                                         alert(JSON.stringify(error));
                                                                                     } );
                                                                         
                                                                         
                                                                     },
                                                                     function(error){
-                                                                        alert("181");
                                                                         alert(JSON.stringify(error));
                                                                     });
                                             
                                             
                                         },
                                         function(error){
-                                            alert("188");
                                             alert(JSON.stringify(error));
                                         } );
     
