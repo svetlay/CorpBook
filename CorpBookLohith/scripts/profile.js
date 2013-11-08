@@ -9,10 +9,8 @@ function profileInit(e) {
     var loggedTemplate = new kendo.template($("#profileTemplate").html());
     data.get(filter)
     .then(function(data) {
-        console.log(JSON.stringify(data));
+        localStorage["CorpBook.User.GamerScore"] = data.result[0].GamerScore;
         loggedUserView = loggedTemplate(data.result[0]);
-           
-        console.log(loggedUserView);
         $("#loggedUserDetails").html(loggedUserView);
         loggedUserPic = app.el.Files.getDownloadUrl(data.result[0].PictureFile);
         console.log(loggedUserPic);
