@@ -76,7 +76,7 @@ function GetRandomEmployee(){
     var randomEmp = Math.ceil(Math.random()*quizDataSource.length)-1;
     return quizDataSource[randomEmp];    
 }
-
+var employeeEmail;
 function ShowQuestion()
 {
     
@@ -84,6 +84,7 @@ function ShowQuestion()
     var questionType = GetRandomQuestionType();    
     
     var employee = GetRandomEmployee();
+    employeeEmail = employee.Email;
     var employee1 = GetRandomEmployee();
     var employee2 = GetRandomEmployee();
     var opt1 = "", opt2 = "", opt3 = "";
@@ -95,15 +96,15 @@ function ShowQuestion()
     }
     else if(questionType.type === "role")
     {
-        opt1 = employee.Role;
-        opt2 = employee1.Role;
+        opt1 = employee1.Role;
+        opt2 = employee.Role;
         opt3 = employee2.Role;
     }
     else 
     {
         opt1 = employee1.Office;
-        opt2 = employee2.Office;
-        opt3 = employee.Office;
+        opt2 = employee.Office;
+        opt3 = employee2.Office;
     }
     currentQuestion = new QuestionModel(questionType,employee,opt1, opt2, opt3);
     var output = questionTemplate(currentQuestion);
@@ -111,6 +112,41 @@ function ShowQuestion()
     kendo.init($("#questionpanel"),kendo.mobile.ui);
 }
 
+
+
+function SendFlagEmail ()
+{
+
+    console.log(employeeEmail);
+    
+    var recipients = {
+    "Recipients": [
+        employeeEmail
+        ],
+    "Context":{
+        "SpecialOffer":"Free popcorn for a year"
+    }
+};
+
+$.ajax({
+    type: "POST",
+    url: 'http://api.everlive.com/v1/Metadata/Applications/VjJXja95aNJmqz0M/EmailTemplates/352737e0-4890-11e3-b9be-c76c12ebd876/send',
+    contentType: "application/json",
+    headers: { "Authorization" : "Accountkey 9lITIOSh8RCK8Wi07L7p01vxg049av3Pe5wQATeifSElxpP1" },
+    data: JSON.stringify(recipients),
+    success: function(data){
+        alert("Email successfully sent.");
+    },
+    error: function(error){
+        alert(JSON.stringify(error));
+    }
+});
+   
+};
+    
+ 
+
+    
 function OnAnswerClick()
 {
     if(currentQuestion.answered)
@@ -143,8 +179,6 @@ function OnAnswerClick()
         $("#message").text("Wrong !!!");
         localStorage["CorpBook.User.GamerScore"] = --gamerScore;
     }
-    //app.el.data('Employee').updateSingle({ 'Id': localStorage["CorpBook.User.Id"], 'GamerScore': JSON.parse(gamerScore) },
-    
     app.el.data('Employee').update(
     {  'GamerScore': JSON.parse(gamerScore) },
     {'Email': localStorage["CorpBook.User"]},
@@ -175,21 +209,18 @@ function OnAnswerClick()
                                                                                         console.log((upddata));
                                                                                     },
                                                                                     function(error){
-                                                                                        alert("174");
                                                                                         alert(JSON.stringify(error));
                                                                                     } );
                                                                         
                                                                         
                                                                     },
                                                                     function(error){
-                                                                        alert("181");
                                                                         alert(JSON.stringify(error));
                                                                     });
                                             
                                             
                                         },
                                         function(error){
-                                            alert("188");
                                             alert(JSON.stringify(error));
                                         } );
     
