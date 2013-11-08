@@ -10,13 +10,9 @@ function profileInit(e)
     var loggedTemplate = new kendo.template($("#profileTemplate").html());
     data.get(filter)
         .then(function(data){
-            console.log(JSON.stringify(data));
              loggedUserView = loggedTemplate(data.result[0]);
-           
-            console.log(loggedUserView);
             $("#loggedUserDetails").html(loggedUserView);
              loggedUserPic = app.el.Files.getDownloadUrl(data.result[0].PictureFile);
-            console.log(loggedUserPic);
             $("#userPicture").attr("src",loggedUserPic);
         },    
   

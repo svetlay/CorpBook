@@ -18,25 +18,6 @@
     }
     
     app.application = new kendo.mobile.Application(document.body, { layout: "tabstrip-layout", statusBarStyle: statusBarStyle, skin : "flat",initial:initialView });
-
-    app.applicationSettings = {
-        emptyGuid: '00000000-0000-0000-0000-000000000000',
-        apiKey: 'VjJXja95aNJmqz0M' // set your API Key here
-    };
-    
-    //localStorage["CorpBook.User"] = "Abhishek.Kant@telerik.com";
-    
-    // initialize Everlive SDK
-    app.el = new Everlive({
-        apiKey: app.applicationSettings.apiKey
-    });
-    
-    /*var filter = app.el.Query();
-    filter.where().eq('${Email}':'Abhishek.Kant@telerik.com');
-    */
-    
-    
-        
     
     app.changeSkin = function (e) {
         if (e.sender.element.text() === "Flat") {
