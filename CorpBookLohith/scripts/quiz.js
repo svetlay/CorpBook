@@ -15,7 +15,7 @@ var QuestionModel = function(qType, emp, opt1, opt2, opt3)
     this.Option1 = opt1;
     this.Option2 = opt2;
     this.Option3 = opt3;
-    
+    this.answered = false;
     this.Evaluate = function(selected)
     {
         if(this.Type.type === "name" )
@@ -113,38 +113,38 @@ function ShowQuestion()
 
 function OnAnswerClick()
 {
+    if(currentQuestion.answered)
+    {
+         $("#message").css("background-color","orange");
+        $("#message").text("Question already answered. Click Next !");   
+        return;
+    }
+    currentQuestion.answered = true;
+    
     var userAnswer = this.wrapper[0].attributes["data-answer"].nodeValue;
-    
-    var qType = currentQuestion.Type;
-    
-    var question = "";
-    
-    if(qType.type === "name")
-    {
-        question = currentQuestion.Employee.FirstName + " " + currentQuestion.Employee.LastName;
-    }
-    else if(qType.type === "role")
-    {
-        question = currentQuestion.Employee.Role;
-    }
-    else
-    {
-        question = currentQuestion.Employee.Office;
-    }
-    console.log("question : " + question)
-    console.log("answer : " + userAnswer)
-    
-    if(question === userAnswer)
+    var gamerScore = parseInt(localStorage["CorpBook.User.GamerScore"],10);
+    if(currentQuestion.Evaluate(userAnswer))
     {
         console.log("correct");
         $("#message").css("background-color","green");
         $("#message").text("Correct !!!");
+        localStorage["CorpBook.User.GamerScore"] = ++gamerScore;
+        
+        var data = app.el.data('Employee');
+        data.updateSingle({ Id: localStorage["CorpBook.User.Id"], 'GamerScore': gamerScore },
+            function(data){
+                console.log(data);
+            },
+            function(error){
+                alert(JSON.stringify(error));
+            } );
     }
     else
     {
         console.log("wrong");
         $("#message").css("background-color","red");
         $("#message").text("Wrong !!!");
+        localStorage["CorpBook.User.GamerScore"] = --gamerScore;
     }
     
     
