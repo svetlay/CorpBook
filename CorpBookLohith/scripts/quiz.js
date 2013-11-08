@@ -143,7 +143,11 @@ function OnAnswerClick()
         $("#message").text("Wrong !!!");
         localStorage["CorpBook.User.GamerScore"] = --gamerScore;
     }
-    app.el.data('Employee').updateSingle({ Id: localStorage["CorpBook.User.Id"], 'GamerScore': gamerScore },
+    //app.el.data('Employee').updateSingle({ 'Id': localStorage["CorpBook.User.Id"], 'GamerScore': JSON.parse(gamerScore) },
+    
+    app.el.data('Employee').update(
+    {  'GamerScore': JSON.parse(gamerScore) },
+    {'Email': localStorage["CorpBook.User"]},
                                         function(data){
                                             
                                             console.log("recognition");
@@ -152,7 +156,7 @@ function OnAnswerClick()
                                                                     .then(function(empdata){
                                                                         
                                                                         var rPlus = empdata.result[0].RecognitionPlus;
-                                                                        var rMinus = empdata.result[0].Recognitionminus;
+                                                                        var rMinus = empdata.result[0].RecognitionMinus;
                                                                         if(isAnswerCorrect)
                                                                         {
                                                                             ++rPlus;
@@ -164,25 +168,28 @@ function OnAnswerClick()
                                                                         
                                                                         
                                                                         app.el.data("Employee").update(
-                                                                                    { 'RecognitionPlus': rPlus, 'Recognitionminus': rMinus }, // data
+                                                                                    { 'RecognitionPlus': rPlus, 'RecognitionMinus': rMinus }, // data
                                                                                     { Id : currentQuestion.Employee.Id }, // filter
                                                                         
                                                                                     function(upddata){
                                                                                         console.log((upddata));
                                                                                     },
                                                                                     function(error){
+                                                                                        alert("174");
                                                                                         alert(JSON.stringify(error));
                                                                                     } );
                                                                         
                                                                         
                                                                     },
                                                                     function(error){
+                                                                        alert("181");
                                                                         alert(JSON.stringify(error));
                                                                     });
                                             
                                             
                                         },
                                         function(error){
+                                            alert("188");
                                             alert(JSON.stringify(error));
                                         } );
     
