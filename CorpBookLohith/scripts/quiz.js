@@ -116,28 +116,25 @@ function OnAnswerClick()
     if(currentQuestion.answered)
     {
          $("#message").css("background-color","orange");
-        $("#message").text("Question already answered. Click Next !");   
+        $("#message").text("Question Answered. Click Next!");   
         return;
     }
     currentQuestion.answered = true;
     
     var userAnswer = this.wrapper[0].attributes["data-answer"].nodeValue;
     var gamerScore = parseInt(localStorage["CorpBook.User.GamerScore"],10);
+    var isAnswerCorrect = false;
     if(currentQuestion.Evaluate(userAnswer))
     {
+        isAnswerCorrect = true;
         console.log("correct");
         $("#message").css("background-color","green");
         $("#message").text("Correct !!!");
         localStorage["CorpBook.User.GamerScore"] = ++gamerScore;
         
-        var data = app.el.data('Employee');
-        data.updateSingle({ Id: localStorage["CorpBook.User.Id"], 'GamerScore': gamerScore },
-            function(data){
-                console.log(data);
-            },
-            function(error){
-                alert(JSON.stringify(error));
-            } );
+        
+        
+        
     }
     else
     {
@@ -146,6 +143,47 @@ function OnAnswerClick()
         $("#message").text("Wrong !!!");
         localStorage["CorpBook.User.GamerScore"] = --gamerScore;
     }
-    
+    app.el.data('Employee').updateSingle({ Id: localStorage["CorpBook.User.Id"], 'GamerScore': gamerScore },
+                                        function(data){
+                                            
+                                            console.log("recognition");
+                                            var filter = { 'Id': currentQuestion.Employee.Id};
+                                            app.el.data('Employee').get(filter)
+                                                                    .then(function(empdata){
+                                                                        
+                                                                        var rPlus = empdata.result[0].RecognitionPlus;
+                                                                        var rMinus = empdata.result[0].Recognitionminus;
+                                                                        if(isAnswerCorrect)
+                                                                        {
+                                                                            ++rPlus;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            --rPlus;
+                                                                        }
+                                                                        
+                                                                        
+                                                                        app.el.data("Employee").update(
+                                                                                    { 'RecognitionPlus': rPlus, 'Recognitionminus': rMinus }, // data
+                                                                                    { Id : currentQuestion.Employee.Id }, // filter
+                                                                        
+                                                                                    function(upddata){
+                                                                                        console.log((upddata));
+                                                                                    },
+                                                                                    function(error){
+                                                                                        alert(JSON.stringify(error));
+                                                                                    } );
+                                                                        
+                                                                        
+                                                                    },
+                                                                    function(error){
+                                                                        alert(JSON.stringify(error));
+                                                                    });
+                                            
+                                            
+                                        },
+                                        function(error){
+                                            alert(JSON.stringify(error));
+                                        } );
     
 }
