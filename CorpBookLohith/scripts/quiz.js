@@ -95,15 +95,15 @@ function ShowQuestion()
     }
     else if(questionType.type === "role")
     {
-        opt1 = employee1.Role;
-        opt2 = employee.Role;
+        opt1 = employee.Role;
+        opt2 = employee1.Role;
         opt3 = employee2.Role;
     }
     else 
     {
         opt1 = employee1.Office;
-        opt2 = employee.Office;
-        opt3 = employee2.Office;
+        opt2 = employee2.Office;
+        opt3 = employee.Office;
     }
     currentQuestion = new QuestionModel(questionType,employee,opt1, opt2, opt3);
     var output = questionTemplate(currentQuestion);
