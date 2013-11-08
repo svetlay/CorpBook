@@ -1,27 +1,41 @@
 <div id="tabstrip-profile"
-        data-role="view"
-        data-title="Profile" data-show="profileInit" class="corpbookview">
- 
-           <div id="loggedUserDetails"> </div>
+     data-role="view"
+     data-title="Profile" data-show="profileInit" class="corpbookview">
+
+    <div id="loggedUserDetails"> </div>
+  <div id="pictureButton" align="center">
+        <a data-role="button" data-click="capturePhoto" data-icon="camera">Take Photo</a>
+    </div>
+</div>
+
+<script id="profileTemplate" type="text/x-kendo-template">
+
+    <h1>#=FirstName# #=LastName#</h1>
+    <img id="userPicture" /><br />
+    <ul class="profile-details-list">
+        <li>
+            <i class="fa fa-keyboard-o"></i> <span> #=Role#</span>
+        </li>
+        <li>
+            <i class="fa fa-map-marker"></i> <span> #=Office#</span>
+        </li>
+        <li>
+            <div class="score-card">
+                <div class="score-points">
+                    <div>#=GamerScore#</div>Points
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="clr"></div>
+    <div class="scoreboard">
+
+        <div id="profileChart"></div>
+        <div class="recognition-note">
+            <i class="fa fa-star"></i> People guess you right #= Math.floor((RecognitionPlus) / (RecognitionPlus + RecognitionMinus) * 100) # % of the time
+        </div>
 
     </div>
-
-
-    <script id="profileTemplate" type="text/x-kendo-template">
-
-<h1>#=FirstName# #=LastName#</h1><br/>
-   <img id="userPicture" /><br />
-<ul class="profile-details-list">
-      <li><i class="fa fa-keyboard-o"></i> <span> #=Role#</span></li>
-       <li><i class="fa fa-map-marker"></i> <span> #=Office#</span></li>
-        <li><div class="score-card"><div class="score-points"><div>#=GamerScore#</div>Points</div></div></li>
-        </ul>
-        <div class="clr"></div>
-        <div class="scoreboard">
-        
-        <div id="profileChart"></div>
-       <div class="recognition-note"><i class="fa fa-star"></i> People guess you right #= Math.floor((RecognitionPlus)/(RecognitionPlus + RecognitionMinus)*100) # % of the time</div>
-        
-</div>
-		</script>
+  
+</script>
 
