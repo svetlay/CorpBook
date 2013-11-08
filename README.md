@@ -26,7 +26,7 @@ About Us
 Telerik Hackathon Entry from Team United Nations
 - Sasha Krsmanovic
 - Abhishek Kant
-- Lohith Goudagere Naharaj
+- Lohith Goudagere Nagaraj
 - Dhananjay Kumar 
 - Faris Sweis
 - Svetla Yankova
