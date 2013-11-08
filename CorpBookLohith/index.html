@@ -18,6 +18,23 @@
     <script src="scripts/quiz.js"></script>
     <script src="scripts/app.js"></script>
     
+        <script>
+            function launchCamera() {
+                navigator.camera.getPicture(onSuccess, onFail, {
+                    quality: 50,
+                    destinationType: Camera.DestinationType.FILE_URI
+                }); 
+
+                function onSuccess(imageURI) {
+                    alert("Image Sent!");
+                }
+
+                function onFail(message) {
+                    alert('Failed because: ' + message);
+                }
+            }
+        </script>
+    
     <style>
         .km-view-title
         {
@@ -72,6 +89,7 @@
         <div data-role="header">
             <div data-role="navbar">
                 <span data-role="view-title"></span>
+                <a   data-role="button" data-icon="camera" data-click="launchCamera" data-align="right"></a>
             </div>
         </div>
 
