@@ -1,10 +1,25 @@
 <div id="tabstrip-leaderboard"
         data-role="view"
-        data-title="Profile">
+        data-title="LeaderBoard"
+    data-init="leaderBoardInit">
 
         <div class="view-content">
-            <h1>Leaderboard</h1>
+            
+           <ul id="leaderboardlistview">
+				
+			</ul>      
             
            
+           
         </div>
+    
     </div>
+
+<script id="leaderboardtemplate" type="text/x-kendo-template">
+			<div>
+               <h2>#=FirstName#</h2>
+                <img src="http://api.everlive.com/v1/VjJXja95aNJmqz0M/Files/"+#=PictureFile#+ "/Download">
+             </div>
+            
+    
+</script>
