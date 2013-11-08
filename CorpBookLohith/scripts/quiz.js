@@ -77,13 +77,6 @@ function GetRandomEmployee(){
     return quizDataSource[randomEmp];    
 }
 
-function GetRandomOptions(qtype, employee)
-{
-    
-    return options;
-}
-
-
 function ShowQuestion()
 {
     
@@ -154,5 +147,5 @@ function OnAnswerClick()
         $("#message").text("Wrong !!!");
     }
     
-    console.log();
+    
 }
