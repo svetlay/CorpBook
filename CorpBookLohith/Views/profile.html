@@ -1,6 +1,6 @@
 <div id="tabstrip-profile"
         data-role="view"
-        data-title="Profile" data-init="profileInit">
+        data-title="Profile" data-show="profileInit" class="corpbookview">
  
            <div id="loggedUserDetails"> </div>
 
@@ -11,13 +11,17 @@
 
 <h1>#=FirstName# #=LastName#</h1><br/>
    <img id="userPicture" /><br />
-
-       <span> #=Role#</span>
-       <span> #=Office#</span>
-        <br />
-        Score: #=GamerScore#<br/>
-        Positive Recognition: #=RecognitionPlus#<br/>
-        Negative Recognition:#=RecognitionMinus#
-
+<ul class="profile-details-list">
+      <li><i class="fa fa-keyboard-o"></i> <span> #=Role#</span></li>
+       <li><i class="fa fa-map-marker"></i> <span> #=Office#</span></li>
+        <li><div class="score-card"><div class="score-points"><div>#=GamerScore#</div>Points</div></div></li>
+        </ul>
+        <div class="clr"></div>
+        <div class="scoreboard">
+        
+        <div id="profileChart"></div>
+       <div class="recognition-note"><i class="fa fa-star"></i> People guess you right #= Math.floor((RecognitionPlus)/(RecognitionPlus + RecognitionMinus)*100) # % of the time</div>
+        
+</div>
 		</script>
 
