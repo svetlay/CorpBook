@@ -25,6 +25,7 @@ function profileInit(e) {
 }
 
 function capturePhoto() {
+    alert("Hello");
     navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
         quality: 50,
         destinationType: destinationType.DATA_URL,
