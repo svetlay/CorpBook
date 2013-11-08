@@ -1,10 +1,28 @@
-<div id="tabstrip-leaderboard" class="corpbookview"
+<div id="tabstrip-leaderboard"
         data-role="view"
-        data-title="Leaderboard">
+        data-title="LeaderBoard"
+    class="corpbookview"
+    data-init="leaderBoardInit">
 
         <div class="view-content">
-            <h1>Leaderboard</h1>
+            
+           <ul id="leaderboardlistview">
+				
+			</ul>      
             
            
+           
         </div>
+    
     </div>
+
+<script id="leaderboardtemplate" type="text/x-kendo-template">
+			
+    
+    <img class="item-photo" src="http://api.everlive.com/v1/VjJXja95aNJmqz0M/Files/#=PictureFile#/Download" />
+    <h3 class="item-title">#=FirstName# #=LastName#</h3>
+    <p class="item-info">#=Office#</p>
+    <a data-role="button" class="details-link">#=GamerScore#</a>
+            
+    
+</script>
