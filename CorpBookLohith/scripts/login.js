@@ -30,6 +30,7 @@
                         return;
                     }
                     localStorage["CorpBook.User"] = username;
+                    localStorage["CorpBook.User.Id"] = data.result[0].Id;
                     app.application.navigate("Views/profile.html")
                     that.set("isLoggedIn", true);
                 },

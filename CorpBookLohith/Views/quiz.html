@@ -1,29 +1,41 @@
 <div id="tabstrip-quiz"
         data-role="view"
         data-title="Quiz"
-    class="corpbookview"
+        data-init="OnQuizViewInit"
+        data-show="OnQuizViewShow"
+        class="corpbookview"
         >
         <div class="view-content;" style="margin:2em">
-            <div align="center">
-                <div style="margin:10px">THIS PERSON WORKS IN ...</div>
-            </div>
-            <div align="center">
-                <div style="float:left">
-                     <img src="Images/lohith.jpg" />         
-                </div>
-                 <div style="float:right">
-                     <a style="width:100px;margin:5px" data-role="button" data-icon="details">Next</a><br>
-                     <a style="width:100px;margin:5px" data-role="button" data-icon="questionmark">Hint</a><br>
-                     <a style="width:100px;margin:5px" data-role="button" data-icon="flag">Flag</a><br>
-                     <a style="width:100px;margin:5px" data-role="button" data-icon="meet">Meet</a><br>
-                 </div>
-            </div>
-            <div align="center">
-                <a data-role="button" style="width:220px;">PALO ALTO OFFICE</a><br/>
-                <a data-role="button" style="width:220px">INDIA OFFICE</a><br/>
-                <a data-role="button" style="width:220px">SOFIA OFFICE</a>
-            </div>
+            
+            <div id="questionpanel">Please wait while we prepare the quiz</div>
+            
+            
             
         </div>
 
+</div>
+
+<script id="questionTemplate" type="text/x-kendo-template">
+    <div align="center">
+        <div style="margin:10px">#= Type.question #</div>
     </div>
+    <div align="center">
+        <div style="float:left">
+             <img src="http://api.everlive.com/v1/VjJXja95aNJmqz0M/Files/#= Employee.PictureFile#/Download" style="width:120px;height:120px" alt="avatar" />         
+        </div>
+         <div style="float:right">
+             <a style="width:100px;margin:2px" data-role="button" data-icon="details" data-click="ShowQuestion">Next</a><br>
+             <a style="width:100px;margin:2px" data-role="button" data-icon="questionmark">Hint</a><br>
+             <a style="width:100px;margin:2px" data-role="button" data-icon="flag">Flag</a><br>
+             <a style="width:100px;margin:2px" data-role="button" data-icon="meet">Meet</a><br>
+         </div>
+    </div>
+    <div align="center" id="optionsPanel">
+        <button id="btnOption1" data-role="button" style="width:220px;" data-answer="#= Option1 #" data-click="OnAnswerClick">#= Option1 #</button><br/>
+        <button id="btnOption2" data-role="button" style="width:220px" data-answer="#= Option2 #" data-click="OnAnswerClick">#= Option2 #</button><br/>
+        <button id="btnOption3" data-role="button" style="width:220px" data-answer="#= Option3 #" data-click="OnAnswerClick">#= Option3 #</button> 
+    </div>
+    <div align="center">
+        <div id="message" style="width:220px;height:50px;margin:10px;color:white;padding:10px" />
+    </div>
+</script>
