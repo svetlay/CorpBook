@@ -76,7 +76,7 @@ function GetRandomEmployee(){
     var randomEmp = Math.ceil(Math.random()*quizDataSource.length)-1;
     return quizDataSource[randomEmp];    
 }
-
+var employeeEmail;
 function ShowQuestion()
 {
     
@@ -84,6 +84,7 @@ function ShowQuestion()
     var questionType = GetRandomQuestionType();    
     
     var employee = GetRandomEmployee();
+    employeeEmail = employee.Email;
     var employee1 = GetRandomEmployee();
     var employee2 = GetRandomEmployee();
     var opt1 = "", opt2 = "", opt3 = "";
@@ -113,12 +114,12 @@ function ShowQuestion()
 function SendFlagEmail ()
 {
 
+    console.log(employeeEmail);
     
     var recipients = {
     "Recipients": [
-        "abhishek.kant@telerik.com",
-        "Lohith.Nagaraj@telerik.com",
-        "Sasha.Krsmanovic@telerik.com"],
+        employeeEmail
+        ],
     "Context":{
         "SpecialOffer":"Free popcorn for a year"
     }
