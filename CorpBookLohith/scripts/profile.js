@@ -23,13 +23,16 @@ function profileInit(e) {
 }
 
 function capturePhoto() {
-    alert("Hello");
-    navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
+    alert("The photo has been taken");
+    navigator.camera.getPicture(onPhotoDataSuccess, function(message) {
+    // Show a helpful message
+}, 
+    {
         quality: 50,
         destinationType: destinationType.DATA_URL,
         sourceType: 1
-    }
-    );
+    });
+    
 }
 
 function onPhotoDataSuccess(imageData) {
