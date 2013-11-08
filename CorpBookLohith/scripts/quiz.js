@@ -110,7 +110,78 @@ function ShowQuestion()
     $("#questionpanel").html(output);
     kendo.init($("#questionpanel"),kendo.mobile.ui);
 }
+function SendFlagEmail ()
+{
+    /*var  ApplicationId = "VjJXja95aNJmqz0M";
+    var EmailTemplateId = "352737e0-4890-11e3-b9be-c76c12ebd876";*/
+    alert("hi");
+    
+    var recipients = {
+    "Recipients": [
+        "abhishek.kant@telerik.com",
+        "Lohith.Nagaraj@telerik.com",
+        "Sasha.Krsmanovic@telerik.com"],
+    "Context":{
+        "SpecialOffer":"Free popcorn for a year"
+    }
+};
 
+$.ajax({
+    type: "POST",
+    url: 'http://api.everlive.com/v1/Metadata/Applications/VjJXja95aNJmqz0M/EmailTemplates/352737e0-4890-11e3-b9be-c76c12ebd876/send',
+    contentType: "application/json",
+    headers: { "Authorization" : "Accountkey 9lITIOSh8RCK8Wi07L7p01vxg049av3Pe5wQATeifSElxpP1" },
+    data: JSON.stringify(recipients),
+    success: function(data){
+        alert("Email successfully sent.");
+    },
+    error: function(error){
+        alert(JSON.stringify(error));
+    }
+});
+
+    
+    alert("sent");
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+};
+    
+ 
+    
+    
+    
+    
+    
 function OnAnswerClick()
 {
     if(currentQuestion.answered)
