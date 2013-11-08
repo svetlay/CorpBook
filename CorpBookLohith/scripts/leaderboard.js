@@ -13,7 +13,7 @@ function leaderBoardInit()
                               sort: { field: "GamerScore", dir: "desc" }
                              
                             });
-    
+   
   leadersBoardDataSource.fetch();
   console.log(leadersBoardDataSource);
   var leaderBoardTemplate =  new kendo.template($("#leaderboardtemplate").text());
